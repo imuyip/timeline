@@ -4,7 +4,7 @@ var mindate = new Date(2016,0,13)
 
 var xScale = d3.time
   .scale()
-  .domain([mindate, maxdate])    // values between for month of january
+  .domain([mindate, maxdate])    
   .range([30,880]);
 
 var xAxis = d3.svg
