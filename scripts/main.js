@@ -4,7 +4,7 @@ var mindate = new Date(2016,0,13)
 
 var xScale = d3.time
   .scale()
-  .domain([mindate, maxdate])    
+  .domain([mindate, maxdate])
   .range([30,880]);
 
 var xAxis = d3.svg
@@ -16,6 +16,6 @@ var xAxis = d3.svg
 
 d3.select("svg")
   .append("g")
-  .attr("class", "xaxis")
+  .attr("class", "axis")
   .attr("transform", "translate(0," + (300) + ")")
   .call(xAxis);
