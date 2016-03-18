@@ -2,20 +2,20 @@ var svg = d3.select("#timeline").append("svg").attr("height","1000").attr("width
 var mindate = new Date(2016,0,13)
   , maxdate = new Date(2016,0,14);
 
-var yScale = d3.time
+var scale = d3.time
   .scale()
   .domain([mindate, maxdate])
   .range([880,30]);
 
-var yAxis = d3.svg
+var axis = d3.svg
   .axis()
-  .scale(yScale)
+  .scale(scale)
   .tickSize(5)
   .ticks(10)
-  .orient("left");
+  .orient("left"); //control whether horizontal or vertical
 
 d3.select("svg")
   .append("g")
   .attr("class", "axis")
   .attr("transform", "translate(100)")
-  .call(yAxis);
+  .call(axis);
