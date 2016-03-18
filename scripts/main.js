@@ -2,7 +2,7 @@ var svg = d3.select("#timeline").append("svg").attr("height","1000").attr("width
 var mindate = new Date(2016,0,13)
   , maxdate = new Date(2016,0,14);
 
-orient="left"; //control whether horizontal or vertical (bottom or left)
+var orient="left"; //control whether horizontal or vertical (bottom or left)
 var scale = d3.time
   .scale()
   .domain([mindate, maxdate])
