@@ -26,14 +26,6 @@ d3.select("svg")
   .append("g")
   .attr("class", "axis")
   .attr("transform", function() {
-    if (orient=="left") {
-      return "translate(50)";
-    }
-    else if (orient=="bottom") {
-      return "translate(0," + height + ")";
-    }
-    else {
-    console.log("not a valid orientation");
-    };
+    return orient=="bottom" ? "translate(0," + height + ")" : "translate(50)";
   })
   .call(axis);
