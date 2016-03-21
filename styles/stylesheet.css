@@ -5,11 +5,15 @@ body, div {
 .axis path,
 .axis line {
     fill: none;
-    stroke: black;
+    stroke: darkgrey;
     shape-rendering: crispEdges;
 }
 
 .axis text {
     font-family: sans-serif;
     font-size: 11px;
+}
+.axis .domain {
+  fill: rgba(96, 158, 166, 0.36);
+
 }
