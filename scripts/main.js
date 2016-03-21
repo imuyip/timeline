@@ -29,8 +29,15 @@ d3.select("svg")
   .attr("transform", function() {
     return orient=="bottom" ? "translate(0," + height + ")" : "translate(60)";
   })
-  .call(axis)
+  .call(axis);
 
-d3.select(".domain").on("dblclick", function() {
-  console.log("domain mouse double click at x = " + d3.event.pageX );
-});
+var zoom = d3.behavior.zoom()
+  .on("zoom", draw);
+
+svg.call(zoom);
+
+zoom.x(scale);
+
+function draw() {
+    svg.select("g.axis").call(axis);
+}
