@@ -11,9 +11,34 @@ body, div {
 
 .axis text {
     font-family: sans-serif;
-    font-size: 11px;
+    font-size: 10px;
+    fill:grey;
 }
 .axis .domain {
-  fill: rgba(96, 158, 166, 0.36);
+  /*fill: rgba(96, 158, 166, 0.3);*/
+  fill:   rgba(146, 13, 248, 0.3);
+}
 
+.axis2 path,
+.axis2 line {
+    fill: none;
+}
+
+.axis2 text {
+    fill:none;
+}
+.axis2 .domain {
+  fill: rgba(0, 0, 250, 0.15);
+}
+
+.axis3 path,
+.axis3 line {
+    fill: none;
+}
+
+.axis3 text {
+    fill:none;
+}
+.axis3 .domain {
+  fill: rgba(0, 250, 0, 0.28);
 }
