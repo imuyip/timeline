@@ -9,7 +9,7 @@ var width = parseFloat(svg.style("width"))-30
 var mindate = new Date(2016,0,13)
   , maxdate = new Date(2016,0,14);
 
-var orient="bottom"; //control whether horizontal or vertical (bottom or left)
+var orient="left"; //control whether horizontal or vertical (bottom or left)
 var scale = d3.time
   .scale()
   .domain([mindate, maxdate])
@@ -18,7 +18,7 @@ var scale = d3.time
 var axis = d3.svg
   .axis()
   .scale(scale)
-  .tickSize(-((orient==="bottom")*((width)*(3/5)) + (orient==="left")*(height*(6/5)))) //will fix this later
+  .tickSize(-((orient==="bottom")*(height-30) + (orient==="left")*(width-40)))
   .ticks(10)
   .tickPadding(10)
   .orient(orient);
@@ -31,4 +31,6 @@ d3.select("svg")
   })
   .call(axis)
 
-d3.select(".domain").on("mouseover", function() { console.log("domain mouseover")});
+d3.select(".domain").on("dblclick", function() {
+  console.log("domain mouse double click at x = " + d3.event.pageX );
+});
