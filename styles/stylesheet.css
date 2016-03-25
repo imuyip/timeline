@@ -2,21 +2,29 @@ body, div {
   margin:0px;
 }
 
-.axis path,
-.axis line {
+.axisTicks path,
+.axisTicks line {
     fill: none;
-    stroke: darkgrey;
+    stroke: white;
     shape-rendering: crispEdges;
 }
 
-.axis text {
+.axisTicks text {
     font-family: sans-serif;
     font-size: 10px;
     fill:grey;
 }
-.axis .domain {
-  /*fill: rgba(96, 158, 166, 0.3);*/
-  fill:   rgba(146, 13, 248, 0.3);
+
+.axis1 path,
+.axis1 line {
+    fill: none;
+}
+
+.axis1 .domain {
+  fill: #6CFF2C;
+}
+.axis1 text {
+    fill:none;
 }
 
 .axis2 path,
@@ -28,7 +36,7 @@ body, div {
     fill:none;
 }
 .axis2 .domain {
-  fill: rgba(0, 0, 250, 0.15);
+  fill: #B2634D;
 }
 
 .axis3 path,
@@ -40,5 +48,5 @@ body, div {
     fill:none;
 }
 .axis3 .domain {
-  fill: rgba(0, 250, 0, 0.28);
+  fill: #5A5EB2;
 }
