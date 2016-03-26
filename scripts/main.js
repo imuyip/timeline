@@ -1,14 +1,13 @@
 //TODO: fix tick changes
 //TODO: add ticks on other side of timeline axis
 //TODO: tidy up
-//TODO: make both orientations align (no shift on changing orientation)
 
 var svg = d3.select("#timeline")
   .append("svg")
   .attr("height","100%")
   .attr("width","100%");
 
-var width = parseFloat(svg.style("width"))-30
+var width = parseFloat(svg.style("width"))-70
   , height = parseFloat(svg.style("height"))-30;
 
 var mindate = new Date(2014,1,1)
@@ -16,12 +15,12 @@ var mindate = new Date(2014,1,1)
 
 var userOrients = ["horizontal","vertical"]
 var orients=["bottom","left"];
-var choice = 1;
+var choice = 0;
 var orient=orients[choice];
 
 var orientText = svg.append("text")
         .text("Make me " + userOrients[1-choice] )
-        .attr("x", (width-150))
+        .attr("x", (width-110))
         .attr("y", 20)
         .attr("text-anchor", "middle")
         .style("font-size", "14")
@@ -34,15 +33,16 @@ var timescale = d3.time
   .domain([mindate, maxdate])
   .range([30, (orient==="bottom")*width + (orient==="left")*height]);
 
-var sectSize = ((orient==="bottom")*(height-30) + (orient==="left")*(width-40));
+var sectSize = ((orient==="bottom")*(height-30) + (orient==="left")*(width-30));
 var divisions = 3;
 var bottomSectTrans = (height-30)/divisions;
-var leftSectTrans = (width-40)/divisions;
+var leftSectTrans = (width-30)/divisions;
 
 var axisTicks = d3.svg
   .axis()
   .scale(timescale)
   .tickSize(-sectSize)
+  .outerTickSize(0)
   .ticks(5)
   .tickPadding(12)
   .orient(orient);
@@ -57,7 +57,7 @@ d3.select("svg")
   .append("g")
   .attr("class", "axis1")
   .attr("transform", function() {
-  return orient=="bottom" ? "translate(0," + height + ")" : "translate(60)";
+  return orient=="bottom" ? "translate(40," + height + ")" : "translate(70)";
   })
   .call(axis1);
 
@@ -65,7 +65,7 @@ d3.select("svg")
   .append("g")
   .attr("class", "axis2")
   .attr("transform", function() {
-    return orient=="bottom" ? "translate(0," + (height-bottomSectTrans) + ")" : "translate(" + (60+leftSectTrans) + ")";
+    return orient=="bottom" ? "translate(40," + (height-bottomSectTrans) + ")" : "translate(" + (70+leftSectTrans) + ")";
   })
   .call(axis2);
 
@@ -73,7 +73,7 @@ d3.select("svg")
   .append("g")
   .attr("class", "axis3")
   .attr("transform", function() {
-    return orient=="bottom" ? "translate(0," + (height-bottomSectTrans*2)+ ")" : "translate(" + (60+leftSectTrans*2) + ")";
+    return orient=="bottom" ? "translate(40," + (height-bottomSectTrans*2)+ ")" : "translate(" + (70+leftSectTrans*2) + ")";
   })
   .call(axis3);
 
@@ -81,14 +81,14 @@ d3.select("svg")
   .append("g")
   .attr("class", "axisTicks")
   .attr("transform", function() {
-    return orient=="bottom" ? "translate(0," + height + ")" : "translate(60)";
+    return orient=="bottom" ? "translate(40," + height + ")" : "translate(70)";
   })
   .call(axisTicks);
 
 var title = svg.append("text")
         .text("D3 timeline")
         .attr("class","title")
-        .attr("x", (width-35))
+        .attr("x", (width+5))
         .attr("y", 20)
         .attr("text-anchor", "middle")
         .style("font-size", "14")
@@ -111,41 +111,42 @@ resize();
 
  function resize() {
       svg.attr("height","100%").attr("width", "100%");
-      width = parseFloat(svg.style("width"))-30;
+      width = parseFloat(svg.style("width"))-70;
       height = parseFloat(svg.style("height"))-30;
-      orientText.attr("x", (width-150));
+      orientText.attr("x", (width-110));
       timescale.range([30, (orient==="bottom")*width + (orient==="left")*height]);
-      sectSize = ((orient==="bottom")*(height-30) + (orient==="left")*(width-40));
+      sectSize = ((orient==="bottom")*(height-30) + (orient==="left")*(width-30));
       bottomSectTrans = (height-30)/divisions;
-      leftSectTrans = (width-40)/divisions;
+      leftSectTrans = (width-30)/divisions;
       axisTicks.tickSize(-sectSize);
+      axisTicks.outerTickSize(0)
       axis1.tickSize(-sectSize/3);
       axis2.tickSize(-sectSize/3);
       axis3.tickSize(-sectSize/3);
       d3.select(".axis1")
         .attr("transform", function() {
-        return orient=="bottom" ? "translate(0," + height + ")" : "translate(60)";
+        return orient=="bottom" ? "translate(40," + height + ")" : "translate(70)";
         })
         .call(axis1);
       d3.select(".axis2")
         .attr("transform", function() {
-          return orient=="bottom" ? "translate(0," + (height-bottomSectTrans) + ")" : "translate(" + (60+leftSectTrans) + ")";
+          return orient=="bottom" ? "translate(40," + (height-bottomSectTrans) + ")" : "translate(" + (70+leftSectTrans) + ")";
         })
         .call(axis2);
 
       d3.select(".axis3")
         .attr("transform", function() {
-          return orient=="bottom" ? "translate(0," + (height-bottomSectTrans*2)+ ")" : "translate(" + (60+leftSectTrans*2) + ")";
+          return orient=="bottom" ? "translate(40," + (height-bottomSectTrans*2)+ ")" : "translate(" + (70+leftSectTrans*2) + ")";
         })
         .call(axis3);
 
       d3.select(".axisTicks")
         .attr("transform", function() {
-          return orient=="bottom" ? "translate(0," + height + ")" : "translate(60)";
+          return orient=="bottom" ? "translate(40," + height + ")" : "translate(70)";
         })
         .call(axisTicks);
 
-      title.attr("x", (width-35))
+      title.attr("x", (width+5))
               .attr("y", 20);
 
       zoom.on("zoom", draw);
