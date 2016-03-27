@@ -1,6 +1,7 @@
 //TODO: fix tick changes
 //TODO: fix zoom scale on resize
 //TODO: tidy up more
+//TODO: label sections
 
 var svg = d3.select("#timeline")
   .append("svg")
@@ -34,7 +35,7 @@ var timescale = d3.time
   .range([30, (orient==="bottom")*width + (orient==="left")*height]);
 
 var sectSize = ((orient==="bottom")*(height-30) + (orient==="left")*(width-30));
-var divisions = 9;
+var divisions = 6;
 var bottomSectTrans = (height-30)/divisions;
 var leftSectTrans = (width-30)/divisions;
 
@@ -137,10 +138,9 @@ function resize() {
       var num = Number(this.parentElement.getAttribute('data-axis'));
       return num % 3 === 0
         ? "#6CFF2C" //green 3,6,9 etc
-        :
-        (num+1) % 3 === 0
-        ? "#B2634D" //brown 2,5,8 etc
-        : "#5A5EB2"; //blue 1,4,7 etc
+        : (num+1) % 3 === 0
+          ? "#B2634D" //brown 2,5,8 etc
+          : "#5A5EB2"; //blue 1,4,7 etc
     });
 
   d3.select(".axisTicks")
