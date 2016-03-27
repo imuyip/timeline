@@ -28,38 +28,47 @@ body, div {
     fill:grey;
 }
 
-.axis1 path,
-.axis1 line {
-    fill: none;
-}
-
 .axis1 .domain {
   fill: #6CFF2C;
 }
-.axis1 text {
-    fill:none;
-}
 
-.axis2 path,
-.axis2 line {
-    fill: none;
-}
-
-.axis2 text {
-    fill:none;
-}
 .axis2 .domain {
   fill: #B2634D;
 }
 
-.axis3 path,
-.axis3 line {
-    fill: none;
-}
-
-.axis3 text {
-    fill:none;
-}
 .axis3 .domain {
   fill: #5A5EB2;
+}
+
+.axis4 .domain {
+  fill: #6CFF2C;
+}
+
+.axis5 .domain {
+  fill: #B2634D;
+}
+
+.axis6 .domain {
+  fill: #5A5EB2;
+}
+
+.axis7 .domain {
+  fill: #6CFF2C;
+}
+
+.axis8 .domain {
+  fill: #B2634D;
+}
+
+.axis9 .domain {
+  fill: #5A5EB2;
+}
+
+
+
+
+.axismain path,
+.axismain line,
+.axismain text {
+    fill: none;
 }
