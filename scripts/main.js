@@ -1,5 +1,5 @@
 //TODO: fix tick changes
-//TODO: add ticks on other side of timeline axis
+//TODO: fix zoom scale on resize
 //TODO: tidy up
 
 var svg = d3.select("#timeline")
@@ -47,6 +47,15 @@ var axisTicks = d3.svg
   .tickPadding(12)
   .orient(orient);
 
+var axisTicksSmall = d3.svg
+  .axis()
+  .scale(timescale)
+  .tickSize(10)
+  .outerTickSize(0)
+  .ticks(5)
+  .tickPadding(6)
+  .orient(orient);
+
 var axis1 = axis2 = axis3 = d3.svg
   .axis()
   .scale(timescale)
@@ -85,6 +94,14 @@ d3.select("svg")
   })
   .call(axisTicks);
 
+d3.select("svg")
+  .append("g")
+  .attr("class", "axisTicksSmall")
+  .attr("transform", function() {
+    return orient=="bottom" ? "translate(40," + (height) + ")" : "translate(70)";
+  })
+  .call(axisTicksSmall);
+
 var title = svg.append("text")
         .text("D3 timeline")
         .attr("class","title")
@@ -104,6 +121,7 @@ zoom.x(timescale);
 
 function draw() {
     svg.select("g.axisTicks").call(axisTicks);
+    svg.select("g.axisTicksSmall").call(axisTicksSmall);
 }
 
 resize();
@@ -119,7 +137,7 @@ resize();
       bottomSectTrans = (height-30)/divisions;
       leftSectTrans = (width-30)/divisions;
       axisTicks.tickSize(-sectSize);
-      axisTicks.outerTickSize(0)
+      axisTicks.outerTickSize(0);
       axis1.tickSize(-sectSize/3);
       axis2.tickSize(-sectSize/3);
       axis3.tickSize(-sectSize/3);
@@ -145,6 +163,11 @@ resize();
           return orient=="bottom" ? "translate(40," + height + ")" : "translate(70)";
         })
         .call(axisTicks);
+        d3.select(".axisTicksSmall")
+          .attr("transform", function() {
+            return orient=="bottom" ? "translate(40," + (height) + ")" : "translate(70)";
+          })
+          .call(axisTicksSmall);
 
       title.attr("x", (width+5))
               .attr("y", 20);
@@ -157,6 +180,7 @@ resize();
 
       function draw() {
           svg.select("g.axisTicks").call(axisTicks);
+          svg.select("g.axisTicksSmall").call(axisTicksSmall);
       }
    }
 
@@ -165,6 +189,7 @@ resize();
         orient=orients[choice];
         orientText.text("Make me " + userOrients[1-choice] );
         axisTicks.orient(orient);
+        axisTicksSmall.orient(orient);
         axis1.orient(orient);
         axis2.orient(orient);
         axis3.orient(orient);
