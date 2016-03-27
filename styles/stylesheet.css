@@ -28,45 +28,6 @@ body, div {
     fill:grey;
 }
 
-.axis1 .domain {
-  fill: #6CFF2C;
-}
-
-.axis2 .domain {
-  fill: #B2634D;
-}
-
-.axis3 .domain {
-  fill: #5A5EB2;
-}
-
-.axis4 .domain {
-  fill: #6CFF2C;
-}
-
-.axis5 .domain {
-  fill: #B2634D;
-}
-
-.axis6 .domain {
-  fill: #5A5EB2;
-}
-
-.axis7 .domain {
-  fill: #6CFF2C;
-}
-
-.axis8 .domain {
-  fill: #B2634D;
-}
-
-.axis9 .domain {
-  fill: #5A5EB2;
-}
-
-
-
-
 .axismain path,
 .axismain line,
 .axismain text {

@@ -1,7 +1,6 @@
 //TODO: fix tick changes
 //TODO: fix zoom scale on resize
 //TODO: tidy up more
-//TODO: styl divisions
 
 var svg = d3.select("#timeline")
   .append("svg")
@@ -132,6 +131,17 @@ function resize() {
         : "translate(" + (70+leftSectTrans*(num-1)) + ")";
     })
     .call(axis);
+
+  d3.selectAll(".axismain .domain")
+    .style("fill",function() {
+      var num = Number(this.parentElement.getAttribute('data-axis'));
+      return num % 3 === 0
+        ? "#6CFF2C" //green 3,6,9 etc
+        :
+        (num+1) % 3 === 0
+        ? "#B2634D" //brown 2,5,8 etc
+        : "#5A5EB2"; //blue 1,4,7 etc
+    });
 
   d3.select(".axisTicks")
     .attr("transform", function() {
