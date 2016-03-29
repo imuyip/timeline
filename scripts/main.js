@@ -28,8 +28,7 @@ var orientText = svg.append("text")
   .style("fill","grey")
   .on("click", reOrient);
 
-var timescale = d3.time
-  .scale()
+var timescale = d3.time.scale()
   .domain([mindate, maxdate])
   .range([30, (orient==="bottom")*width + (orient==="left")*height]);
 
@@ -38,8 +37,7 @@ var divisions = 6;
 var bottomSectTrans = (height-30)/divisions;
 var leftSectTrans = (width-30)/divisions;
 
-var axisTicks = d3.svg
-  .axis()
+var axisTicks = d3.svg.axis()
   .scale(timescale)
   .tickSize(-sectSize)
   .outerTickSize(0)
@@ -47,8 +45,7 @@ var axisTicks = d3.svg
   .tickPadding(12)
   .orient(orient);
 
-var axisTicksSmall = d3.svg
-  .axis()
+var axisTicksSmall = d3.svg.axis()
   .scale(timescale)
   .tickSize(10)
   .outerTickSize(0)
@@ -56,7 +53,10 @@ var axisTicksSmall = d3.svg
   .tickPadding(6)
   .orient(orient);
 
-var axis = d3.svg.axis().scale(timescale).tickSize(-sectSize/divisions).orient(orient);
+var axis = d3.svg.axis()
+  .scale(timescale)
+  .tickSize(-sectSize/divisions)
+  .orient(orient);
 
 for (i = 1; i < divisions+1; i++) {
   d3.select("svg")
