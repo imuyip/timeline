@@ -1,5 +1,4 @@
 //TODO: fix tick changes
-//TODO: fix zoom scale on resize
 //TODO: tidy up more
 //TODO: label sections
 
@@ -157,7 +156,6 @@ function resize() {
           .attr("y", 20);
   zoom.on("zoom", draw);
   svg.call(zoom);
-  zoom.x(timescale);
 
   function draw() {
       svg.select("g.axisTicks").call(axisTicks);
