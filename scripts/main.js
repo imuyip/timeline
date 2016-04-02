@@ -56,6 +56,7 @@ var axisTicksSmall = d3.svg.axis()
 var axis = d3.svg.axis()
   .scale(timescale)
   .tickSize(-sectSize/divisions)
+  .ticks(0)
   .orient(orient);
 
 for (i = 1; i < divisions+1; i++) {
@@ -136,10 +137,10 @@ function resize() {
     .style("fill",function() {
       var num = Number(this.parentElement.getAttribute('data-axis'));
       return num % 3 === 0
-        ? "#6CFF2C" //green 3,6,9 etc
+        ? "rgb(155, 246, 92)" // 6CFF2C green 3,6,9 etc
         : (num+1) % 3 === 0
-          ? "#B2634D" //brown 2,5,8 etc
-          : "#5A5EB2"; //blue 1,4,7 etc
+          ? "rgb(292, 150, 148)" // B2634D brown 2,5,8 etc
+          : "rgb(176, 119, 210)"; //5A5EB2 blue 1,4,7 etc
     });
 
   d3.select(".axisTicks")
@@ -161,6 +162,7 @@ function resize() {
       svg.select("g.axisTicks").call(axisTicks);
       svg.select("g.axisTicksSmall").call(axisTicksSmall);
   }
+
 }
 
 function reOrient() {
